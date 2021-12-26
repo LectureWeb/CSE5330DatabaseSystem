@@ -1,0 +1,221 @@
+
+<!-- saved from url=(0059)http://crystal.uta.edu/~elmasri/db2/usingOracleOnOmega.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="Generator" content="Microsoft Word 97">
+<title>Notes on using Oracle on Omega at UTA Oracle accounts on Omega are created at the beginning of each semester to students enrolled in a</title>
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta name="Template" content="C:\Program Files\Microsoft Office\Office\html.dot">
+<meta http-equiv="Content-Language" content="ko">
+
+</head>
+<body vlink="#800080">
+
+<font face="Arial" size="2"><p>Notes on using Oracle on Omega at UTA<br>
+Oracle accounts on Omega are created at the beginning of each semester to students enrolled in a database classes offererd by CSE and INSY departments.<br>
+The Oracle accounts will be created at the instructors' request only, because of license restriction. <br>
+<br>
+The following documentation is divided into 3 sections:<br>
+Section 1 - For beginners who take database class for the first time.<br>
+Section 2 - For advanced users and instructors.<br>
+Section 3 - Using JDBC to Connect to Oracle. <br>
+<br>
+<br>
+--------------------------------------------------------------------------------<br>
+<br>
+1.1 Getting Started<br>
+a. Log on to your omega account.</p>
+<p>b. Log into SQL*Plus by typing:</p>
+<p>omega&gt;sqlplus </p>
+<p>You will then be prompted for your Oracle username, which is the same as your Omega </p>
+<p>username. When you are prompted for a password, enter your default password </p>
+<p>Your default password is mmddyynn. Substitute the letters for the month, day, and </p>
+<p>last 2 digits of your date of birth followed by the first 2 numbers of your social security/student ID.</p>
+<p>After logging in successfully, you will see the prompt: SQL&gt;.</p>
+<p>--------------------------------------------------------------------------------</p>
+</font><font face="����ü" lang="KO" size="2"></font><p><font face="����ü" lang="KO" size="2"><br>
+</font><font face="Arial" size="2">1.2 Entering a SQL command in SQL*Plus<br>
+You can enter single-line or multiple-line SQL statement. SQL statement is not case-sensitive. To end a SQL statement and execute, you can do it in one of the two ways: <br>
+<br>
+end with a semicolon ;<br>
+end with a slash / on a line by itself<br>
+<br>
+<br>
+--------------------------------------------------------------------------------<br>
+<br>
+1.3 Changing your passwords<br>
+To change your Oracle password. In sqlplus, type <br>
+<br>
+SQL&gt; ALTER USER username IDENTIFIED BY newpassword;<br>
+<br>
+<br>
+--------------------------------------------------------------------------------<br>
+<br>
+1.4 Running SQL Command Files<br>
+The START command retrieves a SQL command file and runs the command(s) it contains. Use START to run a command file containing SQL commands and/or SQL*Plus commands. <br>
+Follow the word START with the name of the file: <br>
+<br>
+SQL&gt; START file_name<br>
+<br>
+If the file has the extension .sql, you need not add the period and the extension sql to the filename. <br>
+<br>
+<br>
+--------------------------------------------------------------------------------<br>
+<br>
+1.5 Getting out of SQL*Plus<br>
+Type <br>
+<br>
+SQL&gt; EXIT<br>
+<br>
+<br>
+--------------------------------------------------------------------------------</font></p><font face="Arial" size="2">
+<p>1.6 How to create the table in Oracle?</p>
+<p>Type like following in SQL prompt.</p>
+<p>SQL&gt; create table example (</p>
+<p>name varchar(10),</p>
+<p>address varchar(30),</p>
+<p>number carchar(10));</p>
+<p>another way is folloing</p>
+<ol type="a">
+
+<li>you make test.sql.</li>
+<li>type the folloing SQL statement into test.sql file.</li>
+<p>create table example (</p>
+<p>name varchar(10),</p>
+<p>address varchar(30),</p>
+<p>number carchar(10));</p>
+<p>commit;</p>
+<li>Upload test.sql file to omega.</li>
+<li>In the Oracle prompt, you type like following:</li></ol>
+<dir>
+
+<p>SQL&gt; @ test.sql</p></dir>
+
+<p>---------------------------------------------------------------------------------------------</p>
+<p>1.7. How to insert data to table?</p>
+<p>SQL&gt; insert into example values('Tom','Arlington','10');</p>
+<p>-------------------------------------------------------------------------------------------</p>
+<p>1.7 List tables owned by you<br>
+Enter the following SQL statement to list schema objects (including tables, views and sequences) owned by you <br>
+<br>
+SQL&gt; SELECT * FROM example;</p>
+<p>---------------------------------------------------------------------------------------------------</p>
+</font><font face="����ü" lang="KO" size="2"></font><p><font face="����ü" lang="KO" size="2"><br>
+</font><font face="Arial" size="2">1.6 Capture output from SQL*Plus to a file<br>
+In SQLPLUS, enter the command <br>
+<br>
+SPOOL output.lst<br>
+<br>
+to begin capture output <br>
+and the command <br>
+<br>
+SPOOL OFF<br>
+<br>
+to end the spooling. Any commands issued in between the SPOOL commands are saved in 'output.lst'. <br>
+<br>
+SQL&gt; SPOOL output.lst<br>
+SQL&gt; SELECT * FROM mytable;<br>
+SQL&gt; SPOOL OFF<br>
+SQL&gt; EXIT<br>
+omega&gt; cat output.lst<br>
+<br>
+----------------------------------------------------------------------------------</font></p><font face="Arial" size="2">
+<ol start="7">
+<ol start="7">
+
+<li>How to delete table?</li></ol>
+</ol>
+
+</font><p><font face="Arial" size="2">SQL&gt; drop table example;</font><font face="����ü" lang="KO" size="2"><br>
+</font><font face="Arial" size="2">--------------------------------------------------------------------------------<br>
+<br>
+1.8 List all columns of a table<br>
+Enter the following SQL statement to list all columns of table 'staff'. <br>
+<br>
+SQL&gt; DESCRIBE staff;<br>
+<br>
+<br>
+--------------------------------------------------------------------------------<br>
+<br>
+1.9 List Database Objects owned by you<br>
+Enter the following SQL statement to list database objects owned by you: <br>
+<br>
+SQL&gt; SELECT * FROM user_objects;<br>
+<br>
+To list only useful information, enter the following SQL statement: <br>
+SQL&gt; SELECT object_name, timestamp, object_type FROM user_objects;<br>
+<br>
+<br>
+--------------------------------------------------------------------------------<br>
+<br>
+1.10 Compilation of a Pro*C program<br>
+There is an alias named "make.proc" created to compile a Pro*C program.<br>
+This alias is good to compile ProC program with filename in the format of lab#.pc where # is a number from the range 1 to 10.<br>
+<br>
+<br>
+The usage is "make.proc lab1" where lab1 is the Pro*C program - lab1.pc<br>
+The output executable file is "lab1" in the above example. <br>
+<br>
+<br>
+--------------------------------------------------------------------------------<br>
+<br>
+1.11 Oracle9i Documentation Library<br>
+Oracle9i Documentation Library is available to UTA staff and students taking database classes only, it is at </font><a href="http://omega.uta.edu./"><u><font face="Arial" size="2" color="#0000ff">http://omega.uta.edu.</font></u></a><font face="Arial" size="2"> <br>
+<br>
+<br>
+--------------------------------------------------------------------------------<br>
+<br>
+--------------------------------------------------------------------------------<br>
+<br>
+2.1 Check your system privileges <br>
+To check for system privileges granted on your current session, enter the following SQL command:<br>
+<br>
+<br>
+SQL&gt; SELECT * from SESSION_PRIVS;<br>
+<br>
+<br>
+--------------------------------------------------------------------------------<br>
+<br>
+2.2 Create public synonyms<br>
+You must have CREATE PUBLIC SYNONYM privilege to create a public synonym. This privilege will only be granted to an instructor, please contact Sunny Siu.<br>
+To create a public sysnonym in Scott's schema: <br>
+<br>
+SQL&gt; CREATE PUBLIC SYNONYM staff FOR scott.staff;<br>
+<br>
+<br>
+--------------------------------------------------------------------------------<br>
+<br>
+2.3 Using SQL*Loader<br>
+The Unix command to invoke SQL*Loader is 'sqlldr'.<br>
+To understand the data loading concept, the structure of control file and the usage of 'sqlldr' command, click the system on-line documentation hyperlink on Omega home page and select Oracle8 Server library and Oracle8 Utilities section for information. <br>
+<br>
+At Unix system prompt, enter the command 'sqlldr' to see a list of keywords accepted by the sqlldr command.<br>
+<br>
+<br>
+<br>
+--------------------------------------------------------------------------------<br>
+<br>
+--------------------------------------------------------------------------------<br>
+<br>
+3.1 JDBC Examples<br>
+JDBCconnect.java - Retrieving data with JDBC.<br>
+JdbcApplet.java - Using JDBC in an Applet.<br>
+<br>
+<br>
+<br>
+--------------------------------------------------------------------------------<br>
+<br>
+3.2 Internet Resources for JDBC<br>
+Oracle Technology Network - Includes downloads and sample code.<br>
+Oracle JDBC Frequenty Asked Questions - contains answers to the most frequently asked questions about Oracle's JDBC drivers<br>
+Sun Microsystems' JDBC Data Access API - JDBC API from Sun Microsystems. Includes links for JDBC drivers.<br>
+Search Google.com - Search for JDBC on Google.com.<br>
+<br>
+<br>
+<br>
+--------------------------------------------------------------------------------<br>
+<br>
+--------------------------------------------------------------------------------<br>
+</font><font face="����ü" lang="KO" size="2">��</font></p>
+
+</body></html>
